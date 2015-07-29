@@ -20,14 +20,17 @@ class Pusher implements WampServerInterface {
         echo "onClose";
     }
     public function onCall(ConnectionInterface $conn, $id, $topic, array $params) {
+        echo "onCall";
         // In this application if clients send data it's because the user hacked around in console
         $conn->callError($id, $topic, 'You are not allowed to make calls')->close();
     }
     public function onPublish(ConnectionInterface $conn, $topic, $event, array $exclude, array $eligible) {
+        echo "onPublish";
         // In this application if clients send data it's because the user hacked around in console
         $conn->close();
     }
     public function onError(ConnectionInterface $conn, \Exception $e) {
+        echo "onError";
     }
 
     public function onLinkAddedToDownloadsList($entry) {
